@@ -18,6 +18,7 @@
   "homepage": "https://github.com/franzlagler/random-color-generator#readme",
   "devDependencies": {
     "@next/eslint-plugin-next": "^11.0.0",
+    "@types/color-convert": "^2.0.0",
     "@types/node": "^16.0.0",
     "@types/react": "^17.0.6",
     "@types/react-dom": "^17.0.5",
@@ -26,7 +27,6 @@
     "@upleveled/eslint-config-upleveled": "1.15.2",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.23.0",
-    "eslint-config-next": "^11.0.0",
     "eslint-config-react-app": "^6.0.0",
     "eslint-import-resolver-typescript": "^2.4.0",
     "eslint-plugin-cypress": "^2.11.2",
@@ -46,7 +46,6 @@
   },
   "dependencies": {
     "chalk": "^4.1.2",
-    "color-convert": "^2.0.1",
-    "convert-css-color-name-to-hex": "^0.1.1"
+    "color-convert": "^2.0.1"
   }
 }
