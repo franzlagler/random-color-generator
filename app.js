@@ -2,7 +2,7 @@
 const chalk = require('chalk');
 const convert = require('color-convert');
 
-const readline = require('readline');
+const readline = require('readline-sync');
 
 // Global variables that store input data
 
