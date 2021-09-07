@@ -2,10 +2,15 @@
 const chalk = require('chalk');
 const convert = require('color-convert');
 
+
+const readline=require('readline');
+
+
+
 // Global variables that store input data
 
-const enteredColor = process.argv[2];
-const enteredLuminosity = process.argv[3];
+const firstInput = process.argv[2]; // Color or Ask
+const secondInput = process.argv[3]; // Luminosity
 
 // Function that creates the required line of text
 const createTemplateText = (color, width = 31, height = 9) => {
@@ -55,26 +60,44 @@ const determineColor = (color, luminosity) => {
 
   const alteredColorHSL = [hue, saturation, lightness];
   const alteredColorHex = '#' + convert.hsl.hex(alteredColorHSL);
-  console.log(alteredColorHex);
   return alteredColorHex;
 }
 
 
 
-// Checks for entered inputs (color and luminosity)
+// Checks for entered inputs (color and luminosity OR ask)
 
-if (!enteredColor) {
+if (!firstInput) {
   const convertedColor = determineColor();
   console.log(chalk.hex(convertedColor)(createTemplateText(convertedColor)));
 }
 
-if (enteredColor) {
+else if(firstInput==='ask'){
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
 
-  if (enteredLuminosity) {
-    const convertedColor = determineColor(enteredColor, enteredLuminosity);
+   rl.question('What color would you like?\n', enteredColor=>{
+    rl.question('What luminosity would you like?\n', enteredLuminosity=>{
+      const convertedColor = determineColor(enteredColor, enteredLuminosity);
+      console.log(chalk.hex(convertedColor)(createTemplateText(convertedColor)));
+      rl.close();
+    })
+  })
+
+
+}
+
+else {
+
+  if (secondInput) {
+    const convertedColor = determineColor(firstInput, secondInput);
     console.log(chalk.hex(convertedColor)(createTemplateText(convertedColor)));
-  } else {
-    const convertedColor = determineColor(enteredColor);
+  }
+
+  else {
+    const convertedColor = determineColor(firstInput);
     console.log(chalk.hex(convertedColor)(createTemplateText(convertedColor)));
   }
 
